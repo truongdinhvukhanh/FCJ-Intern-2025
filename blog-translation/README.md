@@ -71,7 +71,7 @@ Tôi sẽ hướng dẫn bạn cách triển khai Microsoft Active Directory tro
 
 Trong ví dụ này, được minh họa trong Hình 1, bạn triển khai một test EC2 instance và bật tính năng giám sát Runtime Monitoring của GuardDuty. Findings sẽ kích hoạt một EventBridge rule thực thi một Step Functions state machine, quy tắc này chạy hai Systems Manager Run Command documents để phát hiện username và vô hiệu hóa user đó bằng cách sử dụng directory administration EC2 instance.
 
-![Figure 1: Solution architecture](/images/Figure-1-1.png)
+![Figure 1: Solution architecture](/blog-translation/images/Figure-1-1.png)
 
 Hình 1: Kiến trúc giải pháp
 
@@ -85,7 +85,7 @@ GuardDuty là một threat detection service tự động liên tục giám sát
     1.  Nếu bạn đang kích hoạt GuardDuty lần đầu tiên, trong phần **Try threat detection with GuardDuty**, chọn **All Features** và sau đó chọn **Get Started**.
     2.  Nếu bạn đã sử dụng GuardDuty trước đây, chọn **Runtime Monitoring** và sau đó chọn **Enable** trong phần **Runtime Monitoring**.
 
-    ![Figure 2: GuardDuty Runtime Monitoring enabled with EC2 monitoring](/images/Figure-2-1.png)
+    ![Figure 2: GuardDuty Runtime Monitoring enabled with EC2 monitoring](/blog-translation/images/Figure-2-1.png)
 
     Hình 2: GuardDuty Runtime Monitoring được bật với EC2 monitoring
 
@@ -168,7 +168,7 @@ Cấu hình Systems Manager trên directory administration EC2 instance với pe
 3.  Chọn tab **Log On** và chọn **This account**.
 4.  Trong phần **This account**, nhập **privileged domain username** bạn đã tạo trước đó, theo sau là @ và sau đó là domain name, ví dụ *SSMService@corp.example.com*. Nhập password của bạn và chọn **OK**.
 
-    ![Figure 3: Microsoft Windows Services showing Systems Manager Agent settings](/images/Figure-3-1.png)
+    ![Figure 3: Microsoft Windows Services showing Systems Manager Agent settings](/blog-translation/images/Figure-3-1.png)
 
     Hình 3: Microsoft Windows Services hiển thị cài đặt Systems Manager Agent
 
@@ -330,7 +330,7 @@ By the end of this section, state machine của bạn sẽ có một sequential 
 14. Thêm action **Choice**, chọn **pencil icon** next to Rule #1, chọn **Edit conditions**, nhập variable *$.detail.service.runtimeDetails.process.euid*, chọn operator **is present**, value **true**, để **Not** là blank, và chọn **Save Conditions**.
 15. Re-arrange the state machine layout to the same structure as displayed in Figure 4, với một sequential flow bắt đầu bằng một choice mặc định là "No UserID found" và với "UserID" hiện diện bao gồm các steps **Find Username**, **Wait**, **Get Username**, và **Disable AD User**.
 
-    ![Figure 4: Step Functions state machine structure](/images/Figure-4-1.png)
+    ![Figure 4: Step Functions state machine structure](/blog-translation/images/Figure-4-1.png)
 
     Hình 4: Cấu trúc Step Functions state machine
 
@@ -450,13 +450,13 @@ For more information, see [Seamlessly joining an Amazon EC2 Linux instance to yo
 > **Lưu ý**: Bạn phải archive GuardDuty finding trước khi re-running test này, vì EventBridge rule chỉ runs once against a GuardDuty finding with the same details. Để archive the finding, chọn check box next to the **Backdoor:EC2/C&CActivity.B!DNS** finding, chọn **Actions** (top right), và chọn **Archive**.
 >
 
-![Figure 5: GuardDuty simulated findings](/images/Figure-5-1.png)
+![Figure 5: GuardDuty simulated findings](/blog-translation//images/Figure-5-1.png)
 
 Hình 5: Các simulated findings của GuardDuty
 
 Nếu bạn quay lại **Active Directory Users and Computers** trên Directory Administration EC2 instance, bạn sẽ thấy rằng Test User hiện đã bị disabled. Bạn có thể enable user bằng cách nhấp chuột phải vào user và chọn **Enable Account**.
 
-![Figure 6: Active Directory Users and Computers showing the disabled test use](/images/Figure-6-1.png)
+![Figure 6: Active Directory Users and Computers showing the disabled test use](/blog-translation/images/Figure-6-1.png)
 
 Hình 6: Active Directory Users and Computers hiển thị test user bị disabled
 
@@ -470,7 +470,7 @@ Mặc dù bài đăng này sử dụng AWS Managed Microsoft AD, functionality t
 
 Nếu bạn có feedback về bài đăng này, hãy submit **comments** trong phần Comments bên dưới. Nếu bạn có questions về bài đăng này, hãy start a new thread trên [AWS re:Post GuardDuty](https://repost.aws.com/tags/TAkQ_AMw65SICuEGEmuUXv4g/amazon-guardduty) hoặc [contact AWS Support](https://console.aws.amazon.com/support/home).
 
-![Tim-Kingdon.jpg](/images/Tim-Kingdon.jpg)
+![Tim-Kingdon.jpg](/blog-translation/images/Tim-Kingdon.jpg)
 
 **Tim Kingdon**
 
